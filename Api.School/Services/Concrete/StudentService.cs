@@ -1,13 +1,27 @@
 ﻿using Api.School.Models;
+using Api.School.Provider;
 using Api.School.Services.Abstract;
+using System.Data;
 
 namespace Api.School.Services.Concrete
 {
     public class StudentService : IStudentService
     {
-        public List<StudentModel> getStudentList()
+        StudentProvider studentProvider = new StudentProvider();
+
+        public DataTable getStudentList(SearchModel searchModel)
         {
-            throw new NotImplementedException();
+           
+                try
+                {
+                    var datatable= studentProvider.getStudentList(searchModel);                
+                }
+                catch (Exception ex)
+                {
+                     Console.WriteLine(ex.Message);
+                }
+                return new DataTable();
+           
         }
     }
 }
