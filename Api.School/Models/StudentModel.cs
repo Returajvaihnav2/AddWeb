@@ -23,3 +23,4 @@ namespace Api.School.Models
         public DateTime DateOfBirth { get; set; }
     }
 }
+

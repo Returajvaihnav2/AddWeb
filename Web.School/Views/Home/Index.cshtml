@@ -1,4 +1,9 @@
-﻿@model List<Web.School.Models.StudentModel>
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@using X.PagedList.Web.Common;
+@using X.PagedList.Web;
+@using X.PagedList.Mvc;
+@model IPagedList<Web.School.Models.StudentModel> 
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -7,7 +12,14 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))  
+{  
+    <p>  
+        Search Name: @Html.TextBox("SearchValue", ViewBag.FilterValue as string)  
+        <input type="submit" value="Find" />  
+    </p>  
+}  
+   
 <table id="tab_student">
     <tr>
         <td>First Name</td>
@@ -26,6 +38,18 @@
     </tr>
         
     }
+    </table>    
+  <div class="pull-right">
+              
+                  @Html.PagedListPager(
+                  Model, 
+                  page => Url.Action("Index", new{ page=page,size=Context.Request.Query["size"],search = Context.Request.Query["search"]}),
+                 new PagedListRenderOptions
+                 {
+                     LiElementClasses = new string[] { "page-item" },
+                     PageClasses = new string[] { "page-link" },
+                     Display = PagedListDisplayMode.IfNeeded
 
-
-    </table>
+                      })
+                 
+            </div>

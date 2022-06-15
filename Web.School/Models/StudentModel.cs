@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using X.PagedList;
 
 namespace Web.School.Models
 {
@@ -22,4 +23,5 @@ namespace Web.School.Models
         [Display(Name = "Date Of Birth")]
         public DateTime DateOfBirth { get; set; }
     }
+    
 }

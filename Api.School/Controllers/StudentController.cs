@@ -15,15 +15,15 @@ namespace Api.School.Controllers
         StudentService studentService =new StudentService();
         // GET: api/<StudentController>
         [HttpGet("getStudentList")]
-        public MultipleEntityResult<StudentModel> getStudentList(int Page,int Size,String SearchValue)
+        public MultipleEntityResult<StudentModel> getStudentList(int? Page,int? Size,String? SearchValue)
         {
             try
             {
                 SearchModel searchModel = new SearchModel()
                 {
-                    Page=Page,
-                    Size=Size,
-                    SearchValue= SearchValue
+                    Page = Page,
+                    Size = Size,
+                    SearchValue = SearchValue ?? ""
                 };
 
                 var studentlist = studentService.getStudentList(searchModel);
