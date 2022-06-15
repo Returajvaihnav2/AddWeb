@@ -14,22 +14,28 @@ namespace Api.School.Controllers
     {
         StudentService studentService =new StudentService();
         // GET: api/<StudentController>
-        [HttpGet]
-        public MultipleEntityResult<StudentModel> getStudentList(SearchModel searchModel)
+        [HttpGet("getStudentList")]
+        public MultipleEntityResult<StudentModel> getStudentList(int Page,int Size,String SearchValue)
         {
             try
             {
+                SearchModel searchModel = new SearchModel()
+                {
+                    Page=Page,
+                    Size=Size,
+                    SearchValue= SearchValue
+                };
 
                 var studentlist = studentService.getStudentList(searchModel);
                 List<StudentModel> stdlist = new List<StudentModel>();
                 foreach (DataRow student in studentlist.Rows) {
                     stdlist.Add(new StudentModel
                     {
-                        Address = student["student"].ToString(),
-                        DateOfBirth = Convert.ToDateTime(student["student"].ToString()),
-                        EmailID = student["student"].ToString(),
-                        FirstName = student["student"].ToString(),
-                        LastName = student["student"].ToString(),
+                        Address = student["Address"].ToString(),
+                        DateOfBirth = Convert.ToDateTime(student["DateOfBirth"].ToString()),
+                        EmailID = student["EmailID"].ToString(),
+                        FirstName = student["FirstName"].ToString(),
+                        LastName = student["LastName"].ToString(),
                         StudentID = Convert.ToInt32(student["StudentID"])
                     });
                 }
@@ -41,7 +47,7 @@ namespace Api.School.Controllers
                 }
                 else
                 {
-                    MultipleEntityResult<StudentModel> response = new MultipleEntityResult<StudentModel>(stdlist, HttpStatusCode.ExpectationFailed, "");
+                    MultipleEntityResult<StudentModel> response = new MultipleEntityResult<StudentModel>(stdlist, HttpStatusCode.ExpectationFailed, "Record Not Found");
                     return response;
                 }
                 

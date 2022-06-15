@@ -18,7 +18,7 @@ namespace Api.School.Entity
             if (!optionsbuilder.IsConfigured)
             {
               
-                optionsbuilder.UseSqlServer("Data Source=TRX-LTP03;Database=db_School;");
+                optionsbuilder.UseSqlServer("Data Source=TRX-LTP03;Database=db_School;Integrated Security=true");
             }
         }
         //entities

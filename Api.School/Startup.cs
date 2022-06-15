@@ -38,6 +38,8 @@ namespace Api.School
 
             app.UseRouting();
 
+            app.UseCors();
+
             //app.UseAuthorization();
 
             //app.UseAuthentication();
@@ -50,6 +52,7 @@ namespace Api.School
             {
                 endpoints.MapControllers();
             });
+
            
         }
     }

@@ -14,7 +14,8 @@ namespace Api.School.Services.Concrete
            
                 try
                 {
-                    var datatable= studentProvider.getStudentList(searchModel);                
+                    var datatable= studentProvider.getStudentList(searchModel);
+                    return datatable;
                 }
                 catch (Exception ex)
                 {
