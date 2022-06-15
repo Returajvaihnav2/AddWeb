@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using Web.School.Models;
 
@@ -13,9 +14,18 @@ namespace Web.School.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            MultipleEntityResult<StudentModel> stdList = new MultipleEntityResult<StudentModel>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:7007/api/Student/getStudentList?Page=1&Size=3&SearchValue=M"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    stdList = JsonConvert.DeserializeObject<MultipleEntityResult<StudentModel>>(apiResponse);
+                }
+            }
+            return View(stdList.Result);
         }
 
         public IActionResult Privacy()

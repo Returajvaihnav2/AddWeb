@@ -16,3 +16,23 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#tab_student {
+    border: 1px solid gray;
+    width: 100%;
+    border-collapse:collapse;
+}
+    #tab_student tr {
+        border: 1px solid gray;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    #tab_student th {
+       background-color:lightgoldenrodyellow;
+    }
+
+    #tab_student td, #tab_student th {
+        border: 1px solid gray;
+        padding: 5px;
+        border-collapse: collapse;
+    }
