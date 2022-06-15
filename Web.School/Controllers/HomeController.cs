@@ -25,6 +25,7 @@ namespace Web.School.Controllers
             {
                 //Page = Page ?? 1;
                 //size = size ?? 3;
+                ViewBag.FilterValue=SearchValue;
                 using (var response = await httpClient.GetAsync("https://localhost:7007/api/Student/getStudentList?Page="+ Page + "&Size="+ size + "&SearchValue="+ SearchValue+""))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();

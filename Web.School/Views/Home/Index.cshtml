@@ -43,7 +43,7 @@
               
                   @Html.PagedListPager(
                   Model, 
-                  page => Url.Action("Index", new{ page=page,size=Context.Request.Query["size"],search = Context.Request.Query["search"]}),
+                  page => Url.Action("Index", new{ page=page,size=Context.Request.Query["size"],SearchValue = Context.Request.Query["SearchValue"]}),
                  new PagedListRenderOptions
                  {
                      LiElementClasses = new string[] { "page-item" },
